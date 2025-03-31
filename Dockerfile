@@ -6,7 +6,7 @@ ENV PIP_PREFER_BINARY=1
 ENV PYTHONUNBUFFERED=1
 ENV CMAKE_BUILD_PARALLEL_LEVEL=8
 
-# Install system dependencies
+# Install system dependencies (ADD THESE 3 LINES)
 RUN apt-get update && apt-get install -y \
     python3.10 \
     python3-pip \
@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install -y \
     liblapack-dev \
     libatlas-base-dev \
     gfortran \
+    libglib2.0-0 \      # Required for OpenCV
+    libxrender1 \       # Required for face processing
+    libxtst6 \          # Required for insightface
     && pip install comfy-cli runpod requests \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip \
@@ -30,6 +33,13 @@ RUN apt-get update && apt-get install -y \
 # Install ComfyUI
 WORKDIR /comfyui
 RUN /usr/bin/yes | comfy install --cuda-version 11.8 --nvidia --version 0.2.7
+
+# Install Reactor dependencies (ADD THIS BLOCK)
+RUN pip install \
+    insightface==0.7.3 \
+    onnxruntime-gpu==1.17.0 \
+    opencv-python-headless==4.11.0.86 \
+    --extra-index-url https://download.pytorch.org/whl/cu121
 
 # Add project files
 ADD src/extra_model_paths.yaml ./
