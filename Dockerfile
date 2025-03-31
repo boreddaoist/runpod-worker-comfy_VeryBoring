@@ -36,11 +36,13 @@ RUN apt-get update && apt-get install -y \
         imageio-ffmpeg \
         runpod \
         requests \
+    && pip cache purge \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip \
     && apt-get autoremove -y \
     && apt-get clean -y \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && rm -rf /root/.cache/pip
 
 # Install comfy-cli and ComfyUI
 RUN pip install comfy-cli && \
