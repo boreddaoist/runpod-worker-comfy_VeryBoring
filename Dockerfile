@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     && pip install \
         numba \
         mediapipe \
-        onnxruntime-gpu==1.16.0 \  # CUDA 11.8 compatible version
+        onnxruntime-gpu==1.16.0 \
         insightface==0.7.3 \
         opencv-python-headless==4.11.0.86 \
         comfyui-frontend-package \
