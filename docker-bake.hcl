@@ -18,6 +18,14 @@ group "default" {
   targets = ["sdxl"]
 }
 
+target "base" {
+  context = "."
+  dockerfile = "Dockerfile"
+  target = "base"
+  platforms = ["linux/amd64"]
+  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-base"]
+}
+
 target "sdxl" {
   context = "."
   dockerfile = "Dockerfile"
