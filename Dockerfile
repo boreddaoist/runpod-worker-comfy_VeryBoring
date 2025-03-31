@@ -84,18 +84,7 @@ RUN mkdir -p models/checkpoints models/vae models/inpaint models/instantid/SDXL 
 
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
     wget -O models/inpaint/inpaint_v26.fooocus.patch https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v26.fooocus.patch && \
-    wget -O models/inpaint/fooocus_inpaint_head.pth https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/fooocus_inpaint_head.pth && \
-    wget -O models/controlnet/SDXL/controlnet-union-sdxl-1.0/diffusion_pytorch_model_promax.safetensors https://huggingface.co/xinsir/controlnet-union-sdxl-1.0/resolve/main/diffusion_pytorch_model_promax.safetensors && \
-    wget -O models/controlnet/SDXL/instantid/diffusion_pytorch_model.safetensors https://huggingface.co/InstantX/InstantID/resolve/main/ControlNetModel/diffusion_pytorch_model.safetensors && \
-    wget -O models/instantid/SDXL/ip-adapter.bin https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin && \
-    wget -O models/upscale_models/4x-UltraSharp.pth https://huggingface.co/lokCX/4x-Ultrasharp/resolve/main/4x-UltraSharp.pth && \
-    wget -O models/insightface/inswapper_128.onnx https://huggingface.co/ezioruan/inswapper_128.onnx/resolve/main/inswapper_128.onnx && \
-    wget -O models/insightface/models/antelopev2/1k3d68.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/1k3d68.onnx && \
-    wget -O models/insightface/models/antelopev2/2d106det.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx && \
-    wget -O models/insightface/models/antelopev2/genderage.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/genderage.onnx && \
-    wget -O models/insightface/models/antelopev2/glintr100.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/glintr100.onnx && \
-    wget -O models/insightface/models/antelopev2/scrfd_10g_bnkps.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/scrfd_10g_bnkps.onnx && \
-    wget -O models/checkpoints/zavychromaxl_v100.safetensors https://huggingface.co/misri/zavychromaxl_v100/resolve/fe1c89f61d8f1c10ef1478993fad4f673dc45fbf/zavychromaxl_v100.safetensors; \
+    wget -O models/inpaint/fooocus_inpaint_head.pth https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/fooocus_inpaint_head.pth; \
     
    fi
 
