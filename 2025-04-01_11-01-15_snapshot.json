@@ -9,10 +9,6 @@
             "hash": "bdddb08ca82d90d75d97b1d437a652e0284a32ac",
             "disabled": false
         },
-        "https://github.com/tsogzark/ComfyUI-load-image-from-url": {
-            "hash": "66e4c91ffa13ea86be149c0f1a11ad6479bcf0cf",
-            "disabled": false
-        },
         "https://github.com/theUpsider/ComfyUI-Logic": {
             "hash": "42d4f3df45fb7f0dd6e2201a14c07d4dd09f235d",
             "disabled": false
