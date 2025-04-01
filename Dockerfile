@@ -74,9 +74,7 @@ RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
     wget -O models/inpaint/inpaint_v26.fooocus.patch \
         https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v26.fooocus.patch && \
     wget -O models/inpaint/fooocus_inpaint_head.pth \
-        https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/fooocus_inpaint_head.pth && \
-    wget -O models/checkpoints/zavychromaxl_v100.safetensors \
-        https://huggingface.co/misri/zavychromaxl_v100/resolve/fe1c89f61d8f1c10ef1478993fad4f673dc45fbf/zavychromaxl_v100.safetensors; \
+        https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/fooocus_inpaint_head.pths; \
     fi
 
 # Stage 3: Final image
