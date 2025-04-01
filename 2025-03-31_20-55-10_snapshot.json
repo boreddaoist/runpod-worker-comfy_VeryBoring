@@ -24,10 +24,6 @@
         "https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes": {
             "hash": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
             "disabled": false
-        },
-        "https://github.com/mav-rik/facerestore_cf": {
-            "hash": "67f90bc6be976fb58169866155346b0da13bebee",
-            "disabled": false
         }
     },
     "cnr_custom_nodes": {
