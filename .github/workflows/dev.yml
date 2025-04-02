@@ -17,16 +17,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-          
-      - name: Upgrade pip
-        run: pip install --upgrade pip
 
-      - name: Install pip-tools
-        run: pip install pip-tools
-
-      - name: Compile dependencies
-        run: pip-compile --output-file requirements.txt requirements.in
-        
       - name: Install dependencies
         run: pip install -r requirements.txt
 
