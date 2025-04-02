@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     libxrender1 \
     libxtst6 \
+    libgoogle-perftools4 \
     && pip install \
         numba \
         mediapipe \
