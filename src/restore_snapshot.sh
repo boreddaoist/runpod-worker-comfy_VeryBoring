@@ -12,9 +12,5 @@ fi
 echo "runpod-worker-comfy: restoring snapshot: $SNAPSHOT_FILE"
 
 comfy --workspace /comfyui node restore-snapshot "$SNAPSHOT_FILE" --pip-non-url
-# Cleanup after installation
-find /comfyui/custom_nodes -type d -name "__pycache__" -exec rm -rf {} +
-find /comfyui -type d -name "*.egg-info" -exec rm -rf {} +
-pip cache purge
 
 echo "runpod-worker-comfy: restored snapshot file: $SNAPSHOT_FILE"
