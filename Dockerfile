@@ -84,9 +84,9 @@ RUN mkdir -p models/checkpoints models/vae models/inpaint models/instantid model
 
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
   
-    wget -O models/inpaint/inpaint_v26.fooocus.patch https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/inpaint_v26.fooocus.patch && \
-    wget -O models/inpaint/fooocus_inpaint_head.pth https://huggingface.co/lllyasviel/fooocus_inpaint/resolve/main/fooocus_inpaint_head.pth; \
-   fi
+    wget -O models/insightface/models/antelopev2/1k3d68.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/1k3d68.onnx && \
+    wget -O models/insightface/models/antelopev2/2d106det.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx; \
+    fi
 
 # Stage 3: Final image
 FROM base AS final
