@@ -1,5 +1,5 @@
 # Stage 1: Base image with common dependencies
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 AS base
+FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04 AS base
 
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y \
     && pip install numba \
     && pip install mediapipe \
     && pip install onnxruntime \
+    && pip install onnxruntime-gpu \
     && pip install insightface \ 
     && pip install comfyui-frontend-package \
     && pip install pykalman==0.10.1 \
