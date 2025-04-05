@@ -81,7 +81,7 @@ RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
     wget -O models/insightface/models/antelopev2/1k3d68.onnx \
         https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/1k3d68.onnx && \
     wget -O models/insightface/models/antelopev2/2d106det.onnx \
-        https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx; \
+        https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx ; \
     fi
 
 # Final stage
