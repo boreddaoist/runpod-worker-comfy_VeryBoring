@@ -76,14 +76,11 @@ ARG MODEL_TYPE
 
 WORKDIR /comfyui
 RUN mkdir -p models/{checkpoints,vae,inpaint,instantid/SDXL,upscale_models,controlnet/SDXL,insightface/models/antelopev2}
-
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
-    wget -O models/insightface/models/antelopev2/1k3d68.onnx \
-        https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/1k3d68.onnx && \
-    wget -O models/insightface/models/antelopev2/2d106det.onnx \
-        https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx ; \
+  
+    wget -O models/insightface/models/antelopev2/1k3d68.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/1k3d68.onnx && \
+    wget -O models/insightface/models/antelopev2/2d106det.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx; \
     fi
-
 # Final stage
 FROM base AS final
 COPY --from=downloader /comfyui/models /comfyui/models
