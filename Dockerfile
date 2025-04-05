@@ -17,8 +17,17 @@ RUN apt-get update && apt-get install -y \
     git \
     wget \
     libgl1 \
+    libglib2.0-0 \
+    ffmpeg \
+    libsm6 \
+    libxext6 \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
-    && ln -sf /usr/bin/pip3 /usr/bin/pip
+    && ln -sf /usr/bin/pip3 /usr/bin/pip \
+    && pip install --no-cache-dir \
+        insightface==0.7.3 \
+        onnxruntime-gpu==1.16.3 \
+        onnx==1.14.1 \
+        opencv-python-headless==4.9.0.80
 
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
