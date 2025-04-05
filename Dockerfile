@@ -1,5 +1,5 @@
 # Stage 1: Base image with common dependencies
-FROM nvidia/cuda:12.1.0-cudnn8-runtime-ubuntu22.04 AS base
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 as base
 
 # Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive
@@ -16,26 +16,10 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     git \
     wget \
-    ffmpeg \
-    libsm6 \
-    libxext6 \
-    python3-opencv \
     libgl1 \
-    liblapack-dev \
-    libatlas-base-dev \
-    gfortran \
-    && pip install numba \
-    && pip install mediapipe \
-    && pip install onnxruntime \
-    && pip install onnxruntime-gpu \
-    && pip install insightface \ 
-    && pip install comfyui-frontend-package \
-    && pip install pykalman==0.10.1 \
-    && pip install scipy==1.11.4 \
-    && pip install imageio-ffmpeg \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
-     
+
 # Clean up to reduce image size
 RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 
@@ -43,7 +27,7 @@ RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 RUN pip install comfy-cli
 
 # Install ComfyUI
-RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.2.7
+RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
@@ -71,7 +55,7 @@ RUN /restore_snapshot.sh
 CMD ["/start.sh"]
 
 # Stage 2: Download models
-FROM base AS downloader
+FROM base as downloader
 
 ARG HUGGINGFACE_ACCESS_TOKEN
 ARG MODEL_TYPE
@@ -80,21 +64,21 @@ ARG MODEL_TYPE
 WORKDIR /comfyui
 
 # Create necessary directories
-RUN mkdir -p models/checkpoints models/vae models/inpaint models/instantid models/instantid/SDXL models/upscale_models models/controlnet models/controlnet/SDXL models/controlnet/SDXL/controlnet-union-sdxl-1.0 models/controlnet/SDXL/instantid models/insightface models/insightface/models models/insightface/models/antelopev2
+RUN mkdir -p models/checkpoints models/vae
 
-
+# Download checkpoints/vae/LoRA to include in image based on model type
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
+      wget -O models/checkpoints/sd_xl_base_1.0.safetensors https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors && \
+      wget -O models/vae/sdxl_vae.safetensors https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors && \
+      wget -O models/vae/sdxl-vae-fp16-fix.safetensors https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors; \
   
-    wget -O models/insightface/models/antelopev2/1k3d68.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/1k3d68.onnx && \
-    wget -O models/insightface/models/antelopev2/2d106det.onnx https://huggingface.co/spaces/InstantX/InstantID/resolve/main/models/antelopev2/2d106det.onnx; \
     fi
 
 # Stage 3: Final image
-FROM base AS final
+FROM base as final
 
 # Copy models from stage 2 to the final image
 COPY --from=downloader /comfyui/models /comfyui/models
-RUN mkdir -p comfyui/output
 
 # Start container
 CMD ["/start.sh"]
