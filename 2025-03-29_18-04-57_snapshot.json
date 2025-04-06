@@ -21,14 +21,7 @@
             "hash": "bdddb08ca82d90d75d97b1d437a652e0284a32ac",
             "disabled": false
         },
-        "https://codeberg.org/Gourieff/comfyui-reactor-node.git": {
-            "hash": "976a8c51bab55fe5443392566ab4e6a9315eed6a",
-            "disabled": false
-        },
-        "https://github.com/mav-rik/facerestore_cf": {
-            "hash": "67f90bc6be976fb58169866155346b0da13bebee",
-            "disabled": false
-        },
+       
         "https://github.com/chrisgoringe/cg-image-picker.git": {
             "hash": "f349bc0a38ab78a1289e808ec824f3be553594c3",
             "disabled": false
@@ -167,17 +160,6 @@
         "jsonpointer==3.0.0": "",
         "jsonschema==4.23.0": "",
         "jsonschema-specifications==2024.10.1": "",
-        "jupyter-events==0.12.0": "",
-        "jupyter-lsp==2.2.5": "",
-        "jupyter_client==8.6.3": "",
-        "jupyter_core==5.7.2": "",
-        "jupyter_server==2.15.0": "",
-        "jupyter_server_terminals==0.5.3": "",
-        "jupyterlab==4.3.5": "",
-        "jupyterlab-lsp==5.1.0": "",
-        "jupyterlab_code_formatter==3.0.2": "",
-        "jupyterlab_pygments==0.3.0": "",
-        "jupyterlab_server==2.27.3": "",
         "kaldi-native-fbank==1.20.2": "",
         "kiwisolver==1.4.8": "",
         "kornia==0.8.0": "",
@@ -201,7 +183,6 @@
         "matplotlib-inline==0.1.7": "",
         "matrix-client==0.4.0": "",
         "mdurl==0.1.2": "",
-        "mediapipe==0.10.21": "",
         "mistune==3.1.1": "",
         "mixpanel==4.10.1": "",
         "ml_dtypes==0.5.1": "",
