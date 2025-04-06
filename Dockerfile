@@ -7,9 +7,10 @@ ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
     CMAKE_BUILD_PARALLEL_LEVEL=8 \
     LD_LIBRARY_PATH=/usr/local/cuda-11.8/lib64:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH \
-    CUDA_HOME=/usr/local/cuda-11.8
+    CUDA_HOME=/usr/local/cuda-11.8 \
+    INSIGHTFACE_ROOT=/runpod-volume/insightface
 
-# System setup with cleanup in same layer
+# System setup with cleanup
 RUN apt-get update && apt-get install -y \
     python3.10 \
     python3-pip \
@@ -20,13 +21,35 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     libsm6 \
     libxext6 \
+    cmake \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip \
     && pip install --no-cache-dir \
         insightface==0.7.3 \
         onnxruntime-gpu==1.16.3 \
         onnx==1.14.1 \
-        opencv-python-headless==4.9.0.80 \
+        opencv-python-headless[ffmpeg]==4.9.0.80 \
+        numpy==1.26.3 \
+        albumentations>=1.4.16 \
+        segment-anything \
+        ultralytics \
+        fairscale>=0.4.4 \
+        gitpython \
+        imageio \
+        joblib \
+        matplotlib \
+        numba \
+        pilgram \
+        rembg \
+        scikit-image>=0.20.0 \
+        scikit-learn \
+        scipy \
+        timm>=0.4.12 \
+        tqdm \
+        transformers \
+        git+https://github.com/WASasquatch/img2texture.git \
+        git+https://github.com/WASasquatch/cstr \
+        git+https://github.com/WASasquatch/ffmpy.git \
     && pip install comfy-cli \
     && /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26 \
     && apt-get autoremove -y \
