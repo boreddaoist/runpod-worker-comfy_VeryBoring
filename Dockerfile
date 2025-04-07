@@ -30,14 +30,11 @@ RUN pip install comfy-cli
 
 RUN pip install \
     albumentations>=1.4.16 \
-    insightface==0.7.3 \
     onnx>=1.14.0 \
     opencv-python>=4.7.0.72 \
     numpy==1.26.3 \
     segment_anything \
     ultralytics \
-    onnxruntime \
-    onnxruntime-gpu \
     fairscale>=0.4.4 \
     gitpython \
     imageio \
