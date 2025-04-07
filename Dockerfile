@@ -21,7 +21,8 @@ RUN apt-get update && apt-get install -y \
 # Install core packages from original requirements.txt
 RUN pip install --no-cache-dir \
     comfy-cli==1.3.6 \
-    runpod==1.3.6
+    runpod==1.3.6 \
+    "aiohttp>=3.8.6,<3.9.0"
 
 # Install ComfyUI (original version from repo)
 RUN /usr/bin/yes | comfy --workspace /comfyui install \
