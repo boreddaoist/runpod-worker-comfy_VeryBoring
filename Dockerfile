@@ -21,9 +21,9 @@ RUN apt-get update && apt-get install -y \
 # Install core packages from original requirements.txt
 RUN pip install --no-cache-dir \
     comfy-cli==1.3.6 \
-    runpod==1.3.6 \
-    "aiohttp>=3.8.6,<3.9.0"
-
+    "aiohttp>=3.8.6,<3.9.0" \
+    runpod==1.3.6 
+    
 # Install ComfyUI (original version from repo)
 RUN /usr/bin/yes | comfy --workspace /comfyui install \
     --cuda-version 11.8 \
@@ -47,7 +47,7 @@ COPY src/extra_model_paths.yaml /comfyui/
 COPY test_input.json ./
 
 # Original snapshot handling pattern
-COPY *snapshot*.json ./
+ADD *snapshot*.json ./
 
 # Stage 2: Model downloader (original logic)
 FROM base as downloader
