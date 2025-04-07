@@ -28,7 +28,7 @@ RUN apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/*
 # Install comfy-cli
 RUN pip install comfy-cli
 
-UN pip install \
+RUN pip install \
     albumentations>=1.4.16 \
     insightface==0.7.3 \
     onnx>=1.14.0 \
