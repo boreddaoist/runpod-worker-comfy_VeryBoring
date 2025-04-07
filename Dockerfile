@@ -4,9 +4,7 @@ FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 as base
 # Environment configuration
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
-    PYTHONUNBUFFERED=1 \
-    COMFYUI_PATH=/comfyui \
-    CUSTOM_NODES_PATH=/comfyui/custom_nodes
+    PYTHONUNBUFFERED=1
 
 # System dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,81 +12,68 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     git \
     wget \
-    unzip \
     libgl1 \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
     && ln -sf /usr/bin/python3.10 /usr/bin/python \
     && ln -sf /usr/bin/pip3 /usr/bin/pip \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install core Python packages
-RUN pip install --no-cache-dir \
-    comfy-cli==1.3.6 \
-    torch==2.6.0 \
-    torchvision==0.21.0 \
-    torchaudio==2.6.0 \
-    xformers==0.0.25
+# Install comfy-cli (matches original)
+RUN pip install comfy-cli==1.3.6
 
-# Install ComfyUI
-RUN /usr/bin/yes | comfy --workspace ${COMFYUI_PATH} install \
+# Install ComfyUI (matches original Dockerfile)
+RUN /usr/bin/yes | comfy --workspace /comfyui install \
     --cuda-version 11.8 \
     --nvidia \
     --version 0.3.26
 
-# Clone custom nodes with version control
-WORKDIR ${CUSTOM_NODES_PATH}
-RUN git clone https://github.com/Gourieff/comfyui-reactor-node.git \
-    && git clone https://github.com/cubiq/ComfyUI-InstantID.git \
-    && git clone https://github.com/ltdrdata/ComfyUI-Manager.git \
-    && git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes.git \
-    && git clone https://github.com/theUpsider/ComfyUI-Logic.git \
-    && git clone https://github.com/BlenderNeko/ComfyUI-Depth-Anything-V2.git \
-    && git clone https://github.com/Fannovel16/comfyui_controlnet_aux.git \
-    && git clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale.git \
-    && git clone https://github.com/BlenderNeko/ComfyUI_Inpaint-Nodes.git \
-    && git clone https://github.com/WASasquatch/was-node-suite-comfyui.git
+# Clone custom nodes from original docker-bake.hcl and snapshot
+WORKDIR /comfyui/custom_nodes
+RUN git clone https://github.com/M1kep/ComfyLiterals \
+    && git clone https://github.com/tsogzark/ComfyUI-load-image-from-url \
+    && git clone https://github.com/Jordach/comfy-plasma \
+    && git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes \
+    && git clone https://github.com/theUpsider/ComfyUI-Logic \
+    && git clone https://codeberg.org/Gourieff/comfyui-reactor-node.git \
+    && git clone https://github.com/chrisgoringe/cg-image-picker.git \
+    && git clone https://github.com/ltdrdata/ComfyUI-Manager
 
-# Checkout specific versions for compatibility
-RUN cd ComfyUI-Depth-Anything-V2 && git checkout 4c5cc4d \
-    && cd ../comfyui_controlnet_aux && git checkout v1.0.7
+# Install runpod (matches original requirements.txt)
+RUN pip install runpod==1.3.6
 
-# Install Python dependencies for nodes
-RUN pip install --no-cache-dir \
-    insightface==0.7.3 \
-    onnxruntime-gpu==1.16.3 \
-    opencv-python-headless==4.9.0.80 \
-    mediapipe==0.10.21 \
-    rembg==2.0.62 \
-    timm==1.0.14 \
-    transformers==4.48.3
-
-# Install node-specific requirements
-RUN cd comfyui-reactor-node && pip install -r requirements.txt \
-    && cd ../ComfyUI-InstantID && pip install -r requirements.txt \
-    && cd ../ComfyUI-Depth-Anything-V2 && pip install -r requirements.txt
-
-# Create empty model directory structure
-RUN mkdir -p ${COMFYUI_PATH}/models/{checkpoints,controlnet,insightface,blip}
-
-# Copy application files
+# Add support files (matches original)
 WORKDIR /
-COPY src/start.sh src/restore_snapshot.sh src/rp_handler.py ./
-COPY *snapshot*.json ./
+COPY src/extra_model_paths.yaml /comfyui/
+COPY src/start.sh src/restore_snapshot.sh src/rp_handler.py test_input.json ./
 RUN chmod +x /start.sh /restore_snapshot.sh
 
-# Stage 2: Prepare model structure
+# Original snapshot handling pattern
+COPY *snapshot*.json ./
+
+# Stage 2: Download models (matches original Dockerfile logic)
 FROM base as downloader
+ARG HUGGINGFACE_ACCESS_TOKEN
+ARG MODEL_TYPE
 
-# Create empty directory structure
-RUN mkdir -p ${COMFYUI_PATH}/models/checkpoints
+# Create model directories (matches original)
+RUN mkdir -p /comfyui/models/checkpoints /comfyui/models/vae
 
-# Stage 3: Final image
+# Model downloads (original conditional logic)
+RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
+    wget -O /comfyui/models/vae/sdxl_vae.safetensors \
+    https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors && \
+    wget -O /comfyui/models/vae/sdxl-vae-fp16-fix.safetensors \
+    https://huggingface.co/madebyollin/sdxl-vae-fp16-fix/resolve/main/sdxl_vae.safetensors; \
+    fi
+
+# Stage 3: Final image (matches original structure)
 FROM base as final
-COPY --from=downloader ${COMFYUI_PATH}/models ${COMFYUI_PATH}/models
 
-# Entrypoint configuration
+# Copy models from downloader
+COPY --from=downloader /comfyui/models /comfyui/models
+
+# Restore snapshot (original pattern)
+RUN /restore_snapshot.sh
+
+# Original start command
 CMD ["/start.sh"]
