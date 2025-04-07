@@ -68,10 +68,8 @@ WORKDIR /comfyui/custom_nodes
 
 # Install custom nodes
 RUN git clone https://github.com/M1kep/ComfyLiterals \
- && git clone https://github.com/tsogzark/ComfyUI-load-image-from-url \
  && git clone https://github.com/Jordach/comfy-plasma \
  && git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes \
- && git clone https://github.com/theUpsider/ComfyUI-Logic \
  && git clone https://github.com/chrisgoringe/cg-image-picker.git
 
 # Go back to ComfyUI directory
