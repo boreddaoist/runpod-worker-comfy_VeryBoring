@@ -39,8 +39,6 @@ RUN pip install \
     onnxruntime \
     onnxruntime-gpu \
     fairscale>=0.4.4 \
-    git+https://github.com/WASasquatch/img2texture.git \
-    git+https://github.com/WASasquatch/cstr \
     gitpython \
     imageio \
     joblib \
@@ -48,7 +46,6 @@ RUN pip install \
     numba \
     opencv-python-headless[ffmpeg] \
     pilgram \
-    git+https://github.com/WASasquatch/ffmpy.git \
     rembg \
     scikit-image>=0.20.0 \
     scikit-learn \
