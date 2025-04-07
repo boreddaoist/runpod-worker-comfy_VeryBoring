@@ -37,8 +37,7 @@ RUN git clone https://github.com/M1kep/ComfyLiterals \
  && git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes \
  && git clone https://github.com/theUpsider/ComfyUI-Logic \
  && git clone https://codeberg.org/Gourieff/comfyui-reactor-node.git \
- && git clone https://github.com/chrisgoringe/cg-image-picker.git \
- && git clone https://github.com/ltdrdata/ComfyUI-Manager
+ && git clone https://github.com/chrisgoringe/cg-image-picker.git
 
 # Add files from original repository structure
 WORKDIR /
