@@ -31,7 +31,7 @@ RUN pip install comfy-cli
 RUN pip install \
     albumentations>=1.4.16 \
     onnx>=1.14.0 \
-    opencv-python>=4.7.0.72 \
+    opencv-python>=4.11.0.86 \
     numpy==1.26.3 \
     segment_anything \
     ultralytics \
@@ -43,13 +43,51 @@ RUN pip install \
     numba \
     opencv-python-headless[ffmpeg] \
     pilgram \
+    insightface==0.7.3 \
+    onnxruntime==1.20.1 \
+    onnxruntime-gpu==1.20.1 \
     rembg \
     scikit-image>=0.20.0 \
     scikit-learn \
     scipy \
     timm>=0.4.12 \
     tqdm \
-    transformers
+    pillow==11.1.0 \
+    huggingface_hub \
+    color-matcher \ 
+    mss \
+    accelerate \
+    clip_interrogator>=0.6.0 \
+    lark \
+    sentencepiece \
+    diffusers \
+    spandrel \
+    matplotlib \
+    peft \
+    git+https://github.com/WASasquatch/ffmpy.git \
+    git+https://github.com/WASasquatch/img2texture.git \
+    git+https://github.com/WASasquatch/cstr \ 
+    transformers \
+    torch \
+    einops==0.8.1 \
+    importlib_metadata \
+    torchvision==0.21.0 \
+    pyyaml \
+    zipp \
+    python-dateutil \
+    mediapipe \
+    svglib \
+    fvcore \
+    yapf \
+    omegaconf \
+    ftfy \
+    addict \
+    trimesh[easy] \    
+    yacs \
+    scikit-image \
+    filelock==3.17.0 
+    
+    
 
 # Install ComfyUI
 RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26
@@ -63,8 +101,19 @@ WORKDIR /comfyui/custom_nodes
 # Install custom nodes
 RUN git clone https://github.com/M1kep/ComfyLiterals \
  && git clone https://github.com/Jordach/comfy-plasma \
+ && git clone https://github.com/cubiq/ComfyUI_InstantID \
  && git clone https://github.com/Suzie1/ComfyUI_Comfyroll_CustomNodes \
- && git clone https://github.com/chrisgoringe/cg-image-picker.git
+ && git clone https://github.com/chrisgoringe/cg-image-picker.git \
+ && git clone https://codeberg.org/Gourieff/comfyui-reactor-node.git \
+ && git clone https://github.com/chrisgoringe/cg-use-everywhere \
+ && git clone https://github.com/Acly/comfyui-inpaint-nodes \
+ && git clone https://github.com/kijai/ComfyUI-KJNodes \
+ && git clone https://github.com/tsogzark/ComfyUI-load-image-from-url \
+ && git clone https://github.com/theUpsider/ComfyUI-Logic \
+ && git clone https://github.com/WASasquatch/was-node-suite-comfyui \
+ && git clone https://github.com/yolain/ComfyUI-Easy-Use \
+ && git clone https://github.com/pythongosssss/ComfyUI-Custom-Scripts \
+ && git clone https://github.com/Fannovel16/comfyui_controlnet_aux
 
 # Go back to ComfyUI directory
 WORKDIR /comfyui
