@@ -82,7 +82,7 @@ RUN pip install \
     omegaconf \
     ftfy \
     addict \
-    trimesh[easy] \    
+    trimesh \    
     yacs \
     scikit-image \
     filelock==3.17.0 
