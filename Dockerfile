@@ -162,8 +162,7 @@ RUN wget -O models/instantid/ip-adapter.bin https://huggingface.co/InstantX/Inst
     wget -O models/facerestore_models/GPEN-BFR-1024.onnx https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/facerestore_models/GPEN-BFR-1024.onnx && \
     wget -O models/facerestore_models/GPEN-BFR-2048.onnx https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/facerestore_models/GPEN-BFR-2048.onnx && \
     wget -O models/insightface/inswapper_128.onnx https://huggingface.co/ezioruan/inswapper_128.onnx/resolve/main/inswapper_128.onnx && \
-    RUN wget -O models/instantid/ip-adapter.bin https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin && \
-    rm -rf /root/.cache/huggingface
+    wget -O models/instantid/ip-adapter.bin https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin ;\
 
 
 
