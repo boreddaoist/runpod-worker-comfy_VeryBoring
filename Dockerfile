@@ -171,8 +171,10 @@ RUN wget -O models/instantid/ip-adapter.bin https://huggingface.co/InstantX/Inst
 FROM base as final
 
 # Copy models from stage 2 to the final image
-COPY --from=downloader /comfyui/models /comfyui/models
-COPY --from=downloader /comfyui/custom_nodes /comfyui/custom_nodes
+COPY --from=downloader \
+    /comfyui/models \
+    /comfyui/custom_nodes \
+    /comfyui/
 
 # Start container
 CMD ["/start.sh"]
