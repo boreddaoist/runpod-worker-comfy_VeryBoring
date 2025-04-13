@@ -158,9 +158,13 @@ RUN mkdir -p models/checkpoints models/vae models/instantid models/insightface
 
 # Download checkpoints/vae/LoRA to include in image based on model type
 
-RUN wget -O models/instantid/ip-adapter.bin https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin && \   
+RUN if [ "$MODEL_TYPE" = "base" ]; then \ 
+    wget -O models/instantid/ip-adapter.bin https://huggingface.co/InstantX/InstantID/resolve/main/ip-adapter.bin && \   
     rm -rf /root/.cache/huggingface ; \
-   
+    fi
+
+
+
 
 # Stage 3: Final image
 FROM base as final
