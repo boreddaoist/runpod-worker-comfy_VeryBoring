@@ -27,7 +27,3 @@ target "base" {
 }
 
 
-  tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-sdxl"]
-  inherits = ["base"]
-}
-
