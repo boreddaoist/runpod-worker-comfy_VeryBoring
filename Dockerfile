@@ -87,7 +87,11 @@ RUN pip install \
     scikit-image \
     filelock==3.17.0 
     
-    
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    pip cache purge && \
+    rm -rf /root/.cache/pip && \
+    rm -rf /tmp/*    
 
 # Install ComfyUI
 RUN /usr/bin/yes | comfy --workspace /comfyui install --cuda-version 11.8 --nvidia --version 0.3.26
