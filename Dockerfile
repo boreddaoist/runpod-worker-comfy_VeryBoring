@@ -158,7 +158,6 @@ RUN mkdir -p models/checkpoints models/vae models/instantid models/insightface m
 # Download checkpoints/vae/LoRA to include in image based on model type
 
 # Download models directly
-RUN 
 
 RUN if [ "$MODEL_TYPE" = "base" ]; then \
      wget -O models/facerestore_models/GPEN-BFR-512.onnx https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/facerestore_models/GPEN-BFR-512.onnx && \
