@@ -11,7 +11,7 @@ runpod_worker_comfy:
   vae: models/vae/
   unet: models/unet/
   inpaint: models/inpaint/
-  insightface: models/insightface/
-  instantid: models/instantid/
-  facerestore_models: models/facerestore_models/
+
+
+
 
