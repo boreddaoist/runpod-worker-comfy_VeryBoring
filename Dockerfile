@@ -156,9 +156,6 @@ RUN mkdir -p models/checkpoints models/vae models/instantid models/insightface m
 # Download models directly
 
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
-     wget -O models/facerestore_models/GPEN-BFR-512.onnx https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/facerestore_models/GPEN-BFR-512.onnx && \
-     wget -O models/facerestore_models/GPEN-BFR-1024.onnx https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/facerestore_models/GPEN-BFR-1024.onnx && \
-     wget -O models/facerestore_models/GPEN-BFR-2048.onnx https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/facerestore_models/GPEN-BFR-2048.onnx && \
      wget -O models/insightface/inswapper_128.onnx https://huggingface.co/ezioruan/inswapper_128.onnx/resolve/main/inswapper_128.onnx && \
      wget -O models/insightface/models/buffalo_l/1k3d68.onnx https://huggingface.co/yolkailtd/face-swap-models/resolve/main/insightface/models/buffalo_l/1k3d68.onnx && \
      wget -O models/insightface/models/buffalo_l/2d106det.onnx https://huggingface.co/yolkailtd/face-swap-models/resolve/main/insightface/models/buffalo_l/2d106det.onnx && \
