@@ -153,7 +153,7 @@ ARG MODEL_TYPE
 WORKDIR /comfyui
 
 # Create necessary directories
-RUN mkdir -p models/checkpoints models/vae models/instantid models/insightface models/facerestore_models models/insightface/models/buffalo_l
+RUN mkdir -p models/checkpoints models/vae models/instantid models/insightface models/facerestore_models models/insightface/models models/insightface/models/buffalo_l
 
 # Download checkpoints/vae/LoRA to include in image based on model type
 
