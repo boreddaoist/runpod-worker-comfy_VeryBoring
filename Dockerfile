@@ -147,6 +147,7 @@ CMD ["/start.sh"]
 FROM base as downloader
 
 ARG HUGGINGFACE_ACCESS_TOKEN
+ARG MODEL_TYPE
 
 # Change working directory to ComfyUI
 WORKDIR /comfyui
