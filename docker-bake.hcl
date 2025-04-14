@@ -23,6 +23,9 @@ target "base" {
   dockerfile = "Dockerfile"
   target = "base"
   platforms = ["linux/amd64"]
+  args = {
+    MODEL_TYPE = "base"
+  }
   tags = ["${DOCKERHUB_REPO}/${DOCKERHUB_IMG}:${RELEASE_VERSION}-base"]
 }
 
