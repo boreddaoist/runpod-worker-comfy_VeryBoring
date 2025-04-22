@@ -13,7 +13,7 @@ runpod_worker_comfy:
   inpaint: models/inpaint/
   instantid: models/instantid/
   insightface: models/insightface/models/
-
+  facerestore_models: models/facerestore_models
 
 
 
