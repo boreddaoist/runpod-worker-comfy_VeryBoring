@@ -19,6 +19,48 @@ if [ -d "/runpod-volume/ComfyUI/models/insightface" ]; then
 else
     echo "/runpod-volume/ComfyUI/models/insightface directory does not exist."
 fi
+if [ -d "/runpod-volume/ComfyUI/models/instantid" ]; then
+    echo "/runpod-volume/ComfyUI/models/instantid directory exists."
+
+    # Create a soft link to /comfyui/models/insightface if it doesn't already exist
+    if [ ! -L "/comfyui/models/instantid" ]; then
+        ln -s /runpod-volume/ComfyUI/models/instantid /comfyui/models/instantid
+        echo "Created a soft link to /comfyui/models/insightface."
+    else
+        echo "Soft link already exists."
+    fi
+else
+    echo "/runpod-volume/ComfyUI/models/instantid directory does not exist."
+fi
+
+if [ -d "/runpod-volume/ComfyUI/models/facerestore_models" ]; then
+    echo "/runpod-volume/ComfyUI/models/facerestore_models directory exists."
+
+    # Create a soft link to /comfyui/models/insightface if it doesn't already exist
+    if [ ! -L "/comfyui/models/facerestore_models" ]; then
+        ln -s /runpod-volume/ComfyUI/models/facerestore_models /comfyui/models/facerestore_models
+        echo "Created a soft link to /comfyui/models/facerestore_models."
+    else
+        echo "Soft link already exists."
+    fi
+else
+    echo "/runpod-volume/ComfyUI/models/facerestore_models directory does not exist."
+fi
+
+if [ -d "/runpod-volume/ComfyUI/models/inpaint" ]; then
+    echo "/runpod-volume/ComfyUI/models/inpaint directory exists."
+
+    # Create a soft link to /comfyui/models/insightface if it doesn't already exist
+    if [ ! -L "/comfyui/models/inpaint" ]; then
+        ln -s /runpod-volume/ComfyUI/models/inpaint /comfyui/models/inpaint
+        echo "Created a soft link to /comfyui/models/inpaint."
+    else
+        echo "Soft link already exists."
+    fi
+else
+    echo "/runpod-volume/ComfyUI/models/inpaint directory does not exist."
+fi
+
 
 # Serve the API and don't shutdown the container
 if [ "$SERVE_API_LOCALLY" == "true" ]; then
