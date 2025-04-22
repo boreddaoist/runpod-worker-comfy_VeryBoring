@@ -10,6 +10,8 @@ runpod_worker_comfy:
   upscale_models: models/upscale_models/
   vae: models/vae/
   unet: models/unet/
+  ultralytics_bbox: models/Ultralytics/bbox/
+  facedetection: models/facedetection/
   inpaint: models/inpaint/
   instantid: models/instantid/
   insightface: models/insightface/
