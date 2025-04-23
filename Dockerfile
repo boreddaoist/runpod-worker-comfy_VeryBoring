@@ -157,6 +157,8 @@ RUN mkdir -p models/checkpoints models/vae models/instantid models/insightface m
 
 RUN if [ "$MODEL_TYPE" = "sdxl" ]; then \
      wget -O models/insightface/inswapper_128.onnx https://huggingface.co/ezioruan/inswapper_128.onnx/resolve/main/inswapper_128.onnx && \
+     wget -O models/ultralytics/bbox/face_yolov8m.pt https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/detection/bbox/face_yolov8m.pt && \
+     wget -O models/sams/sam_vit_b_01ec64.pth https://huggingface.co/datasets/Gourieff/ReActor/resolve/main/models/sams/sam_vit_b_01ec64.pth && \
      wget -O models/insightface/models/buffalo_l/1k3d68.onnx https://huggingface.co/yolkailtd/face-swap-models/resolve/main/insightface/models/buffalo_l/1k3d68.onnx && \
      wget -O models/insightface/models/buffalo_l/2d106det.onnx https://huggingface.co/yolkailtd/face-swap-models/resolve/main/insightface/models/buffalo_l/2d106det.onnx && \
      wget -O models/insightface/models/buffalo_l/det_10g.onnx https://huggingface.co/yolkailtd/face-swap-models/resolve/main/insightface/models/buffalo_l/det_10g.onnx && \
