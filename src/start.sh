@@ -5,60 +5,60 @@ TCMALLOC="$(ldconfig -p | grep -Po "libtcmalloc.so.\d" | head -n 1)"
 export LD_PRELOAD="${TCMALLOC}"
 
 
-# Check if /runpod-volume/ComfyUI/models/insightface is mounted
-if [ -d "/runpod-volume/ComfyUI/models/insightface" ]; then
-    echo "/runpod-volume/ComfyUI/models/insightface directory exists."
+# Check if /runpod-volume/models/insightface is mounted
+if [ -d "/runpod-volume/models/insightface" ]; then
+    echo "/runpod-volume/models/insightface directory exists."
 
     # Create a soft link to /comfyui/models/insightface if it doesn't already exist
     if [ ! -L "/comfyui/models/insightface" ]; then
-        ln -s /runpod-volume/ComfyUI/models/insightface /comfyui/models/insightface
+        ln -s /runpod-volume/models/insightface /comfyui/models/insightface
         echo "Created a soft link to /comfyui/models/insightface."
     else
         echo "Soft link already exists."
     fi
 else
-    echo "/runpod-volume/ComfyUI/models/insightface directory does not exist."
+    echo "/runpod-volume/models/insightface directory does not exist."
 fi
-if [ -d "/runpod-volume/ComfyUI/models/instantid" ]; then
-    echo "/runpod-volume/ComfyUI/models/instantid directory exists."
+if [ -d "/runpod-volume/models/instantid" ]; then
+    echo "/runpod-volume/models/instantid directory exists."
 
     # Create a soft link to /comfyui/models/insightface if it doesn't already exist
     if [ ! -L "/comfyui/models/instantid" ]; then
-        ln -s /runpod-volume/ComfyUI/models/instantid /comfyui/models/instantid
+        ln -s /runpod-volume/models/instantid /comfyui/models/instantid
         echo "Created a soft link to /comfyui/models/insightface."
     else
         echo "Soft link already exists."
     fi
 else
-    echo "/runpod-volume/ComfyUI/models/instantid directory does not exist."
+    echo "/runpod-volume/models/instantid directory does not exist."
 fi
 
-if [ -d "/runpod-volume/ComfyUI/models/facerestore_models" ]; then
-    echo "/runpod-volume/ComfyUI/models/facerestore_models directory exists."
+if [ -d "/runpod-volume/models/facerestore_models" ]; then
+    echo "/runpod-volume/models/facerestore_models directory exists."
 
     # Create a soft link to /comfyui/models/insightface if it doesn't already exist
     if [ ! -L "/comfyui/models/facerestore_models" ]; then
-        ln -s /runpod-volume/ComfyUI/models/facerestore_models /comfyui/models/facerestore_models
+        ln -s /runpod-volume/models/facerestore_models /comfyui/models/facerestore_models
         echo "Created a soft link to /comfyui/models/facerestore_models."
     else
         echo "Soft link already exists."
     fi
 else
-    echo "/runpod-volume/ComfyUI/models/facerestore_models directory does not exist."
+    echo "/runpod-volume/models/facerestore_models directory does not exist."
 fi
 
-if [ -d "/runpod-volume/ComfyUI/models/inpaint" ]; then
-    echo "/runpod-volume/ComfyUI/models/inpaint directory exists."
+if [ -d "/runpod-volume/models/inpaint" ]; then
+    echo "/runpod-volume/models/inpaint directory exists."
 
     # Create a soft link to /comfyui/models/insightface if it doesn't already exist
     if [ ! -L "/comfyui/models/inpaint" ]; then
-        ln -s /runpod-volume/ComfyUI/models/inpaint /comfyui/models/inpaint
+        ln -s /runpod-volume/models/inpaint /comfyui/models/inpaint
         echo "Created a soft link to /comfyui/models/inpaint."
     else
         echo "Soft link already exists."
     fi
 else
-    echo "/runpod-volume/ComfyUI/models/inpaint directory does not exist."
+    echo "/runpod-volume/models/inpaint directory does not exist."
 fi
 
 
