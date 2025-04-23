@@ -4,7 +4,7 @@
 TCMALLOC="$(ldconfig -p | grep -Po "libtcmalloc.so.\d" | head -n 1)"
 export LD_PRELOAD="${TCMALLOC}"
 
-export INSIGHTFACE_HOME="/comfyui/models/insightface"
+
 # Check if /runpod-volume/models/insightface is mounted
 if [ -d "/runpod-volume/models/insightface" ]; then
     echo "/runpod-volume/models/insightface directory exists."
@@ -60,7 +60,7 @@ if [ -d "/runpod-volume/models/inpaint" ]; then
 else
     echo "/runpod-volume/models/inpaint directory does not exist."
 fi
-
+export INSIGHTFACE_HOME="/comfyui/models/insightface"
 
 # Serve the API and don't shutdown the container
 if [ "$SERVE_API_LOCALLY" == "true" ]; then
